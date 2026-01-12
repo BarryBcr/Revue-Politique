@@ -1,0 +1,7 @@
+{
+  "name": "Revue Politique Digital",
+  "description": "A high-end, responsive digital edition for a political and parliamentary journal, featuring sophisticated typography, dynamic article grids, and integrated AI-powered summary features.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
