@@ -12,6 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Tooling local
+.claude-flow/
+.swarm/
+.cursor/
+
+# Playwright artefacts
+.playwright-mcp/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

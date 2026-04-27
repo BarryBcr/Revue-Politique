@@ -4,9 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revue Politique et Parlementaire</title>
+    <title>Revue Politique et Parlementaire — Fondée en 1894</title>
+    <meta name="description" content="Un guide sûr et prudent pour les élus du suffrage universel. Analyses politiques, parlementaires et internationales depuis 1894." />
+    <link rel="icon" type="image/png" href="/assets/logo-RPP-bleu.png" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&family=Noto+Serif:wght@400;700&family=Noto+Serif+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..0" rel="stylesheet" />
     <script>
         tailwind.config = {
@@ -14,26 +16,55 @@
             theme: {
                 extend: {
                     colors: {
+                        ink: {
+                            DEFAULT: '#0a0a0a',
+                            soft: '#1a1a1a',
+                            muted: '#525252',
+                            light: '#a3a3a3'
+                        },
+                        paper: {
+                            DEFAULT: '#fafaf7',
+                            cream: '#f3eee5',
+                            line: '#e8e4d9'
+                        },
                         brand: {
                             blue: '#3b71b9',
                             darkBlue: '#2e5a96',
-                            grey: '#c6c6c6',
-                            background: '#f8f9fa'
+                            grey: '#c6c6c6'
                         }
                     },
                     fontFamily: {
-                        sans: ['Public Sans', 'sans-serif'],
-                        serif: ['Noto Serif', 'serif'],
+                        sans: ['"Public Sans"', 'system-ui', 'sans-serif'],
+                        serif: ['"Noto Serif Display"', '"Noto Serif"', 'Georgia', 'serif'],
+                    },
+                    fontSize: {
+                        'display-xl': ['clamp(48px, 6vw, 76px)', { lineHeight: '0.95', letterSpacing: '-0.02em' }],
+                        'display-lg': ['clamp(36px, 4.5vw, 56px)', { lineHeight: '1.0',  letterSpacing: '-0.015em' }],
+                        'display-md': ['clamp(28px, 3vw, 40px)', { lineHeight: '1.05', letterSpacing: '-0.01em' }]
+                    },
+                    letterSpacing: {
+                        tightest: '-0.02em',
+                        kicker: '0.18em',
+                        wordmark: '0.45em'
                     }
                 }
             }
         }
     </script>
     <style>
-        .serif-title { font-family: 'Noto Serif', serif; }
+        body { font-family: 'Public Sans', system-ui, sans-serif; }
+        .serif-title { font-family: 'Noto Serif Display', 'Noto Serif', Georgia, serif; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .ornament-rule {
+            display: flex; align-items: center; gap: 1rem;
+            color: #a3a3a3; font-size: 14px;
+        }
+        .ornament-rule::before, .ornament-rule::after {
+            content: ''; flex: 1; height: 1px; background: #e5e5e5;
+        }
     </style>
+
 <script type="importmap">
 {
   "imports": {
@@ -45,7 +76,8 @@
 }
 </script>
 </head>
-<body class="bg-white text-slate-900 transition-colors duration-300">
+<body class="bg-paper text-ink antialiased">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>

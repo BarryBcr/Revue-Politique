@@ -1,104 +1,125 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import LatestArticles from './components/LatestArticles';
+import FeatureLongForm from './components/FeatureLongForm';
 import Editorials from './components/Editorials';
-import CTASection from './components/CTASection';
-import CategoryGrid from './components/CategoryGrid';
+import UpcomingEvents from './components/UpcomingEvents';
+import Dossiers from './components/Dossiers';
+import Contribute from './components/Contribute';
 import Footer from './components/Footer';
 import MobileNav from './components/MobileNav';
 import ArticleDetail from './components/ArticleDetail';
 import { Article } from './types';
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI } from '@google/genai';
 
 const App: React.FC = () => {
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [isSearching, setIsSearching] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResult, setSearchResult] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
-    
-    setIsSearching(true);
-    setSearchResult('Analyse en cours par notre IA...');
+
+    setIsLoading(true);
+    setSearchResult('Analyse en cours par notre IA…');
 
     try {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
-        contents: `En tant qu'analyste pour la Revue Politique, propose une brève synthèse (150 mots max) sur le sujet suivant: ${searchQuery}`,
+        model: 'gemini-2.5-flash',
+        contents: `En tant qu'analyste pour la Revue Politique et Parlementaire (fondée en 1894), propose une brève synthèse (150 mots max) sur le sujet suivant : ${searchQuery}`,
         config: {
-          systemInstruction: "Tu es un éditorialiste politique français de haut niveau. Ton ton est analytique, neutre et sophistiqué.",
+          systemInstruction: "Tu es un éditorialiste politique français de haut niveau dans la tradition de la Revue Politique et Parlementaire. Ton ton est analytique, neutre, sophistiqué — sans jargon militant.",
         }
       });
       setSearchResult(response.text || 'Aucun résultat trouvé.');
     } catch (error) {
       console.error('Search error:', error);
-      setSearchResult('Une erreur est survenue lors de la recherche.');
+      setSearchResult("Une erreur est survenue lors de la recherche.");
     } finally {
-      setIsSearching(false);
+      setIsLoading(false);
     }
   };
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* Top Banner */}
-      <div className="bg-brand-blue text-white py-2 text-center text-[10px] font-bold tracking-[0.2em] uppercase px-4">
-        Offre spéciale : 50% de réduction sur l'abonnement annuel
-      </div>
+  const goHome = () => {
+    setSelectedArticle(null);
+    setIsSearching(false);
+    setSearchQuery('');
+    setSearchResult('');
+  };
 
-      <Header 
-        onSearchClick={() => setIsSearching(!isSearching)} 
-        onLogoClick={() => {
-          setSelectedArticle(null);
-          setIsSearching(false);
-        }}
+  return (
+    <div className="min-h-screen bg-paper text-ink">
+      <Header
+        onSearchClick={() => setIsSearching(!isSearching)}
+        onLogoClick={goHome}
       />
 
-      <main className="max-w-[1200px] mx-auto px-6 pt-12 pb-24">
+      <main className="max-w-[1240px] mx-auto px-6">
         {isSearching && (
-          <div className="mb-12 bg-slate-50 p-8 rounded-lg border border-slate-200">
-            <form onSubmit={handleSearch} className="flex gap-4 mb-6">
-              <input 
-                type="text" 
+          <div className="mt-10 mb-8 bg-paper-cream p-8 lg:p-10 border-l-4 border-brand-blue">
+            <p className="text-[10px] font-bold uppercase tracking-kicker text-brand-blue mb-4">
+              Recherche assistée par IA
+            </p>
+            <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3 mb-6">
+              <input
+                type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Rechercher une analyse ou un sujet..." 
-                className="flex-1 bg-white border-slate-200 rounded p-3 focus:ring-brand-blue"
+                placeholder="Rechercher une analyse, un sujet, un auteur…"
+                className="flex-1 bg-white border border-paper-line rounded-none p-3 text-base focus:ring-1 focus:ring-brand-blue focus:border-brand-blue focus:outline-none"
               />
-              <button 
+              <button
                 type="submit"
-                className="bg-brand-blue text-white px-8 py-3 rounded font-bold uppercase tracking-widest text-[11px]"
+                disabled={isLoading}
+                className="bg-ink hover:bg-brand-blue text-white px-8 py-3 font-bold uppercase tracking-kicker text-[11px] transition-colors disabled:opacity-50"
               >
-                Chercher
+                {isLoading ? 'Recherche…' : 'Chercher'}
               </button>
             </form>
             {searchResult && (
               <div className="prose max-w-none">
-                <h4 className="serif-title text-brand-blue text-xl mb-4">Analyse IA</h4>
-                <p className="text-slate-600 italic whitespace-pre-wrap">{searchResult}</p>
+                <p className="text-[10px] font-bold uppercase tracking-kicker text-ink-muted mb-3">Synthèse IA</p>
+                <p className="serif-title text-base text-ink leading-relaxed whitespace-pre-wrap">
+                  {searchResult}
+                </p>
               </div>
             )}
           </div>
         )}
 
         {selectedArticle ? (
-          <ArticleDetail article={selectedArticle} onBack={() => setSelectedArticle(null)} />
+          <div className="pt-8 pb-24">
+            <ArticleDetail article={selectedArticle} onBack={goHome} />
+          </div>
         ) : (
           <>
             <Hero onArticleClick={setSelectedArticle} />
+            <LatestArticles onArticleClick={setSelectedArticle} />
+            <FeatureLongForm onArticleClick={setSelectedArticle} />
             <Editorials />
-            <CTASection />
-            <CategoryGrid onArticleClick={setSelectedArticle} />
           </>
         )}
       </main>
 
+      {!selectedArticle && !isSearching && (
+        <>
+          <Dossiers />
+          <div className="max-w-[1240px] mx-auto px-6">
+            <UpcomingEvents />
+            <Contribute />
+          </div>
+        </>
+      )}
+
       <Footer />
-      
-      {/* Mobile Floating Nav */}
+
+      <div className="block md:hidden h-16" aria-hidden="true" />
       <div className="block md:hidden">
         <MobileNav />
       </div>

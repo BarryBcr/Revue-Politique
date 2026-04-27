@@ -1,97 +1,207 @@
 
-import { Article, Editorial } from './types';
+import { Article, Editorial, UpcomingEvent, Dossier } from './types';
 
+// === ARTICLE À LA UNE ============================================
 export const FEATURED_ARTICLE: Article = {
-  id: 'main-1',
-  category: 'Géopolitique',
-  readTime: '15 Min de lecture',
-  title: "L'ordre mondial à l'épreuve des crises contemporaines : vers une nouvelle architecture ?",
-  summary: "Une analyse approfondie des tensions géopolitiques actuelles, de la recomposition des alliances en Europe de l'Est aux nouveaux défis en Indopacifique.",
-  author: "Jean-Marc Lefebvre",
-  authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100&h=100",
-  image: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=1200"
+  id: 'featured-1',
+  category: 'International',
+  readTime: '12 min de lecture',
+  date: '24 avril 2026',
+  title: "L'Inde comme victime collatérale de la guerre en Iran",
+  summary: "L'embrasement du golfe Persique recompose les équilibres énergétiques asiatiques. Pourquoi New Delhi paie le prix d'un conflit qu'elle n'a pas choisi — et ce que cela signifie pour la stratégie indo-pacifique de l'Europe.",
+  author: "Myriam Benraad",
+  authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+  image: "https://images.unsplash.com/photo-1532375810709-75b1da00537c?auto=format&fit=crop&q=80&w=1600"
 };
 
+// === ÉDITO COLONNE LATÉRALE ====================================
 export const SIDE_ARTICLES: Article[] = [
   {
     id: 'side-1',
-    category: 'Institution',
-    title: "Réforme parlementaire : vers un nouveau souffle démocratique",
-    summary: "Décryptage des enjeux constitutionnels de la rentrée et l'avenir de la representation nationale.",
+    category: 'Politique',
+    title: "Droite : l'union en solo",
+    summary: "Décryptage des recompositions de la droite parlementaire à six mois des municipales.",
     author: "Sophie Valandry",
-    authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100&h=100",
-    image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&q=80&w=800"
+    authorImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200&h=200",
+    image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&q=80&w=900"
   },
   {
     id: 'side-2',
-    category: 'Technologie',
-    title: "Souveraineté numérique : l'Europe face aux géants de la tech",
-    summary: "Pourquoi la maîtrise des données est devenue le nerf de la guerre politique au XXIème siècle.",
+    category: 'Société',
+    title: "G. Attal fait du 1er mai une loi-slogan",
+    summary: "Comment la majorité tente de réinvestir le terrain social par la communication politique.",
     author: "Marc-Antoine de la Roche",
-    authorImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800"
+    authorImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200",
+    image: "https://images.unsplash.com/photo-1591291621164-2c6367723315?auto=format&fit=crop&q=80&w=900"
+  },
+  {
+    id: 'side-3',
+    category: 'Tech',
+    title: "Habermas : le guide perdu des stratégistes modernes",
+    summary: "Relire l'espace public habermassien à l'ère des plateformes : un détour philosophique nécessaire.",
+    author: "Antoine Beauchamp",
+    authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+    image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&q=80&w=900"
   }
 ];
 
+// === ÉDITORIAUX (auteurs signature) =============================
 export const EDITORIALS: Editorial[] = [
   {
     id: 'ed-1',
-    title: "La fin des certitudes",
-    author: "Marie Lefebvre",
-    authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200&h=200",
-    quote: "Nous entrons dans une ère de volatilité où les anciennes alliances ne garantissent plus la paix durable..."
+    title: "Des fautes contre la Constitution ?",
+    author: "Pierre Mazeaud",
+    role: "Ancien président du Conseil constitutionnel",
+    authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400",
+    quote: "Quand l'exécutif se substitue au législateur, ce n'est plus l'efficacité qu'il sert, c'est sa propre fatigue institutionnelle."
   },
   {
     id: 'ed-2',
-    title: "Le retour de l'histoire",
-    author: "Pierre Durand",
-    authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200",
-    quote: "L'illusion de la fin de l'histoire s'évapore face à la résurgence des nationalismes identitaires en Occident."
+    title: "Référendum sur l'immigration : une fausse bonne idée",
+    author: "Marie Lefebvre",
+    role: "Politiste, directrice d'études EHESS",
+    authorImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400&h=400",
+    quote: "Soumettre au plébiscite une question qui mérite un examen technique revient à confondre le baromètre avec le thermomètre."
   },
   {
     id: 'ed-3',
-    title: "Défis écologiques",
-    author: "Claire Vallet",
-    authorImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200&h=200",
-    quote: "La planification écologique doit devenir le pilier central de tout programme politique réaliste pour la décennie."
+    title: "9 milliards d'euros !",
+    author: "Anne-Sophie Girard",
+    role: "Économiste, ancienne membre du HCFP",
+    authorImage: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400&h=400",
+    quote: "L'arithmétique budgétaire n'est jamais neutre : elle dit ce qu'on a renoncé à faire avant même de dire ce qu'on finance."
   }
 ];
 
-export const SECONDARY_ARTICLES: Article[] = [
+// === DERNIÈRES ANALYSES (grille 4 colonnes) =====================
+export const LATEST_ARTICLES: Article[] = [
   {
-    id: 'sec-1',
-    category: 'Japon',
-    title: "Le renouveau industriel nippon face à la Chine",
-    summary: "Analyse de la restructuration des chaînes de valeur en Asie de l'Est.",
-    author: "Hiroshi Sato",
-    authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100&h=100",
-    image: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&q=80&w=600&h=450"
+    id: 'lat-1',
+    category: 'Société',
+    title: "« Une nouvelle politique territoriale pour l'école » : la suppression de postes camouflée",
+    summary: "Décryptage de la circulaire qui justifie 4 000 suppressions par un argumentaire territorial discutable.",
+    author: "Claire Vallet",
+    authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200&h=200",
+    image: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?auto=format&fit=crop&q=80&w=800&h=600"
   },
   {
-    id: 'sec-2',
-    category: 'Finance',
-    title: "Les banques centrales à l'heure du doute inflationniste",
-    summary: "Les nouveaux dilemmes monétaires des grandes puissances occidentales.",
-    author: "Anne-Sophie Girard",
-    authorImage: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=100&h=100",
-    image: "https://images.unsplash.com/photo-1550565118-3a14e8d0386f?auto=format&fit=crop&q=80&w=600&h=450"
+    id: 'lat-2',
+    category: 'Économie',
+    title: "Logement : l'inéluctable baisse des prix",
+    summary: "Analyse des dynamiques de marché et des trois scénarios pour les vingt prochaines années.",
+    author: "Jean-Marc Lefebvre",
+    authorImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200&h=200",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800&h=600"
   },
   {
-    id: 'sec-3',
-    category: 'Afrique',
-    title: "Émergence des nouvelles puissances régionales",
-    summary: "Comment le Nigéria, l'Éthiopie et l'Afrique du Sud redessinent la géopolitique continentale.",
+    id: 'lat-3',
+    category: 'International',
+    title: "Le Pérou, entre instabilité interne et contraintes externes",
+    summary: "Pourquoi Lima cristallise les fractures andines et le retour d'influence chinois.",
     author: "Amadou Diallo",
-    authorImage: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=100&h=100",
-    image: "https://images.unsplash.com/photo-1484156818044-c040038b0719?auto=format&fit=crop&q=80&w=600&h=450"
+    authorImage: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200&h=200",
+    image: "https://images.unsplash.com/photo-1531065208531-4036c0dba3ca?auto=format&fit=crop&q=80&w=800&h=600"
   },
   {
-    id: 'sec-4',
-    category: 'Europe',
-    title: "L'élargissement de l'UE : le grand tabou ?",
-    summary: "Pourquoi la question de l'intégration des Balkans et de l'Ukraine divise les 27.",
-    author: "Klaus Schmidt",
-    authorImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100",
-    image: "https://images.unsplash.com/photo-1520106212299-d99c443e4568?auto=format&fit=crop&q=80&w=600&h=450"
+    id: 'lat-4',
+    category: 'Politique',
+    title: "Élections municipales 2026 : dénationalisation et défaite de la gauche classique",
+    summary: "Lecture des scrutins urbains des 15 et 22 mars : trois leçons sur la recomposition des territoires.",
+    author: "Hiroshi Sato",
+    authorImage: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200&h=200",
+    image: "https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&q=80&w=800&h=600"
+  }
+];
+
+// === ARTICLE LONG-FORM INTERCALÉ ================================
+export const LONG_FORM_ARTICLE: Article = {
+  id: 'long-1',
+  category: 'Tech',
+  readTime: '20 min de lecture',
+  date: '22 avril 2026',
+  title: "Souveraineté numérique : ce que coûte vraiment notre dépendance aux clouds américains",
+  summary: "Une enquête approfondie sur les choix d'infrastructure de l'État français depuis 2017 et les leviers de réindustrialisation numérique encore disponibles. Avec les contributions de chercheurs du CNRS, d'anciens directeurs de la DINSIC et de représentants de l'écosystème SaaS européen.",
+  author: "Klaus Schmidt",
+  authorImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200&h=200",
+  image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1000&h=1000"
+};
+
+// === ÉVÉNEMENTS — La Cité des débats / Le Printemps des technologies
+export const UPCOMING_EVENTS: UpcomingEvent[] = [
+  {
+    id: 'evt-1',
+    day: '17',
+    month: 'MAI',
+    year: '2026',
+    series: 'La Cité des débats',
+    title: "Faut-il avoir peur de l'avenir ?",
+    location: "Saint-Raphaël · 9h00 — 18h30",
+    href: '#'
+  },
+  {
+    id: 'evt-2',
+    day: '06',
+    month: 'JUIN',
+    year: '2026',
+    series: 'Le Printemps des technologies',
+    title: "Édition 2026 — Souveraineté, IA et démocratie",
+    location: "Paris · Sénat, salle Médicis",
+    href: '#'
+  },
+  {
+    id: 'evt-3',
+    day: '24',
+    month: 'JUIN',
+    year: '2026',
+    series: 'Conférence-débat',
+    title: "Aimons-nous encore la liberté ? avec Pierre Rosanvallon",
+    location: "Paris · 10 rue du Colisée · 19h00",
+    href: '#'
+  }
+];
+
+// === DOSSIERS / NUMÉROS RÉCENTS =================================
+export const DOSSIERS: Dossier[] = [
+  {
+    id: 'd-1',
+    number: 'N° 1115',
+    title: "Démocratie et fragmentation politique",
+    cover: 'https://images.unsplash.com/photo-1614332287897-cdc485fa562d?auto=format&fit=crop&q=80&w=400&h=560',
+    href: '#'
+  },
+  {
+    id: 'd-2',
+    number: 'N° 1114',
+    title: "L'Europe à l'épreuve de la guerre",
+    cover: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?auto=format&fit=crop&q=80&w=400&h=560',
+    href: '#'
+  },
+  {
+    id: 'd-3',
+    number: 'N° 1113',
+    title: "Le retour de la planification",
+    cover: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=400&h=560',
+    href: '#'
+  },
+  {
+    id: 'd-4',
+    number: 'N° 1112',
+    title: "Décarbonation : politiques publiques en tension",
+    cover: 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&q=80&w=400&h=560',
+    href: '#'
+  },
+  {
+    id: 'd-5',
+    number: 'N° 1111',
+    title: "Le Parlement face aux nouvelles urgences",
+    cover: 'https://images.unsplash.com/photo-1532153975070-2e9ab71f1b14?auto=format&fit=crop&q=80&w=400&h=560',
+    href: '#'
+  },
+  {
+    id: 'd-6',
+    number: 'N° 1110',
+    title: "Souveraineté technologique européenne",
+    cover: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=400&h=560',
+    href: '#'
   }
 ];
